@@ -1,0 +1,15 @@
+version: "3"
+
+tasks:
+  generate:
+    cmds:
+      - mkdir -p addons/kk_data_layer/gen
+      - for: ["String", "Vector3"]
+        cmd: sed -e "s/@@TYPE@@/{{ .ITEM }}/g" -e "s/@@NAME_PREFIX@@/{{ .ITEM }}/g" template/property.gd.template > addons/kk_data_layer/gen/{{ lower .ITEM }}_property.gd
+    sources:
+      - template/property.gd.template
+    generates:
+      - addons/kk_data_layer/gen/*.gd
+  clean:
+    cmds:
+      - rm -rf addons/kk_data_layer/gen
