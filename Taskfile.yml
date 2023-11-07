@@ -4,8 +4,8 @@ tasks:
   generate:
     cmds:
       - mkdir -p addons/kk_data_layer/gen
-      - for: ["String", "Vector3"]
-        cmd: sed -e "s/@@TYPE@@/{{ .ITEM }}/g" -e "s/@@NAME_PREFIX@@/{{ .ITEM }}/g" template/property.gd.template > addons/kk_data_layer/gen/{{ lower .ITEM }}_property.gd
+      - for: ["String", "Vector3", "bool"]
+        cmd: sed -e "s/@@TYPE@@/{{ .ITEM }}/g" -e "s/@@NAME_PREFIX@@/{{ title .ITEM }}/g" template/property.gd.template > addons/kk_data_layer/gen/{{ lower .ITEM }}_property.gd
     sources:
       - template/property.gd.template
     generates:
